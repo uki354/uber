@@ -20,8 +20,10 @@ public class CarModel extends BaseModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
     private Long id;
+
     @Column(nullable = false)
     private String brand;
+
     @Column(nullable = false)
     private String model;
 
@@ -36,8 +38,10 @@ public class CarModel extends BaseModel {
 
     @Column(name = "manufacture_year", columnDefinition = "DATE", nullable = false)
     private Instant manufactureYear;
+
     @Column(nullable = false)
     private FuelType fuelType;
+
     @Column(nullable = false)
     private String color;
 
