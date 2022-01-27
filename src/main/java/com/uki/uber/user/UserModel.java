@@ -1,6 +1,7 @@
 package com.uki.uber.user;
 
 
+import com.uki.uber.role.Role;
 import com.uki.uber.util.BaseModel;
 import com.uki.uber.vote.VoteModel;
 import lombok.*;
@@ -24,6 +25,9 @@ public class UserModel extends BaseModel {
     @Column(name = "uber_user_id")
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -43,6 +47,13 @@ public class UserModel extends BaseModel {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Set<VoteModel> votes  = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JoinTable(name = "uber_user_role",
+        joinColumns        = @JoinColumn(name = "uber_user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

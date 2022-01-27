@@ -41,7 +41,7 @@ class UserServiceImplTest {
     @BeforeEach
     public void init(){
          user = new UserModel(1L,"name","surname","123",
-                null,"email@email.com","123456","address", null);
+                null,"email@email.com","123456","address", null,null,null);
 
          testImage = new File("src/test/java/com/uki/uber/user/service/test-image.jpg");
 

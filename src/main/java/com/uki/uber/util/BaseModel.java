@@ -1,10 +1,13 @@
 package com.uki.uber.util;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.Instant;
 
 @MappedSuperclass
+@Data
 public class BaseModel {
 
     @Column(name = "is_deleted")

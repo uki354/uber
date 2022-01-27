@@ -3,6 +3,7 @@ package com.uki.uber.user.service;
 import com.uki.uber.user.UserModel;
 import com.uki.uber.user.dao.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+
+
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements  UserService {
@@ -20,6 +23,8 @@ public class UserServiceImpl implements  UserService {
     private final UserRepository userRepository;
     public static final String UPLOAD_DIR_PATH = "src/main/resources/static/user_uploads/";
     public static final String UPLOAD_DIR = "user_uploads/";
+    private final PasswordEncoder passwordEncoder;
+
 
     @Override
     @Transactional
@@ -29,6 +34,8 @@ public class UserServiceImpl implements  UserService {
             user.setImagePath(imagePath);
             uploadUserImage(user.getFirstName(), image);
         }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.saveUser(user);
     }
 
@@ -48,10 +55,5 @@ public class UserServiceImpl implements  UserService {
             e.printStackTrace();
         }
     }
-
-
-
-
-
 
 }
