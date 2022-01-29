@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,9 +23,13 @@ public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final LoginAttemptService loginAttemptService;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        if (loginAttemptService.isBlocked(request.getRemoteAddr())){
+            throw new RuntimeException("blocked");
+        }
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -40,11 +45,14 @@ public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
         User user = (User) authResult.getPrincipal();
         String access_token = jwtService.generateJwtToken(user,request.getRequestURL().toString());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        loginAttemptService.loginSucceeded(request.getRemoteAddr());
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getOutputStream(),access_token);
     }
 
-
-
-
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        super.unsuccessfulAuthentication(request, response, failed);
+        loginAttemptService.loginFailed(request.getRemoteAddr());
+    }
 }

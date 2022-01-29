@@ -9,9 +9,11 @@ import org.springframework.stereotype.Component;
 public class CustomAuthFilterFactory {
 
     private final JwtService jwtService;
+    private final LoginAttemptService loginAttemptService;
+
 
      public CustomAuthenticationFilter getAuthenticationFilter(AuthenticationManager manager){
-         return new CustomAuthenticationFilterImpl(manager, jwtService);
+         return new CustomAuthenticationFilterImpl(manager, jwtService, loginAttemptService);
      }
 
      public CustomAuthorizationFilter getAuthorizationFilter( ){
