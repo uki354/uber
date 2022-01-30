@@ -11,6 +11,9 @@ public class ImageFileValidator implements ConstraintValidator<ValidImage, Multi
 
     @Override
     public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
+        if(value == null){
+            return true;
+        }
         boolean result = true;
 
         String contentType = value.getContentType();
