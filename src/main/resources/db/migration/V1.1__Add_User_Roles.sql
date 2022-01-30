@@ -13,10 +13,7 @@ CREATE TABLE uber_user_role
 );
 
 ALTER TABLE uber_user
-    ADD username VARCHAR(255) NULL;
-
-ALTER TABLE uber_user
-    MODIFY username VARCHAR (255) NOT NULL;
+    ADD username VARCHAR(255) NOT NULL;
 
 ALTER TABLE `role`
     ADD CONSTRAINT uc_role_name UNIQUE (name);
@@ -29,3 +26,5 @@ ALTER TABLE uber_user_role
 
 ALTER TABLE uber_user_role
     ADD CONSTRAINT fk_ubeuserol_on_user_model FOREIGN KEY (uber_user_id) REFERENCES uber_user (uber_user_id);
+
+INSERT INTO `role` (name) VALUES ("ROLE_USER");
