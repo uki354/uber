@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 @AllArgsConstructor
 public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
@@ -30,8 +31,15 @@ public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
         if (loginAttemptService.isBlocked(request.getRemoteAddr())){
             throw new RuntimeException("blocked");
         }
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username,password;
+        try{
+            Map<String, String> credentials = new ObjectMapper().readValue(request.getInputStream(), Map.class);
+            username = credentials.get("username");
+            password = credentials.get("password");
+
+        }catch (IOException e){
+            throw new RuntimeException("Error while getting credentials");
+        }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,password);
 
