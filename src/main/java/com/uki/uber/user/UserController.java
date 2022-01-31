@@ -20,10 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createNewUser(UserModel user,
-                                           @ValidImage
-                                           @RequestParam(name = "image",required = false) MultipartFile file){
-        userService.createNewUser(user, file);
+    public ResponseEntity<?> createNewUser(@RequestBody UserModel user){
+        userService.createNewUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

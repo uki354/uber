@@ -9,11 +9,9 @@ import com.uki.uber.security.*;
 import lombok.AllArgsConstructor;
 
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,9 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.annotation.PostConstruct;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
+
 
 
 @EnableWebSecurity
@@ -41,16 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final String LOGIN = "/api/login";
     public static final String SIGNUP = "/api/user/create";
-    @Value("${jwt.public.key}")
-    public static RSAPublicKey publicKey;
-    @Value("${private.key}")
-    public static RSAPrivateKey privateKey;
-
-    @PostConstruct
-    private void init(){
-        System.out.println(publicKey);
-        System.out.println(privateKey);
-    }
 
 
     @Override

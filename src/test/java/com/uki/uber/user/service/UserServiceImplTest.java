@@ -52,16 +52,17 @@ class UserServiceImplTest {
     @Test
     @DisplayName("Should create  new user without Multipart file image")
     public void shouldCreateNewUser(){
-        userService.createNewUser(user, null);
+        userService.createNewUser(user);
         Mockito.verify(userRepository, Mockito.atMostOnce()).saveUser(userModelArgumentCaptor.capture());
         Assertions.assertThat(userModelArgumentCaptor.getValue()).usingRecursiveComparison().isEqualTo(user);
     }
 
 
     @Test
+    @Disabled
     public void shouldCreateNewUserWithImageUpload() throws IOException {
         MockMultipartFile image = new MockMultipartFile("image","", MediaType.IMAGE_JPEG_VALUE, testImage.toURI().toURL().openStream());
-        userService.createNewUser(user,image);
+        userService.createNewUser(user);
         Mockito.verify(userRepository, Mockito.atMostOnce()).saveUser(userModelArgumentCaptor.capture());
         Assertions.assertThat(userModelArgumentCaptor.getValue()).usingRecursiveComparison().isEqualTo(user);
     }

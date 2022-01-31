@@ -28,13 +28,7 @@ public class UserServiceImpl implements  UserService {
 
     @Override
     @Transactional
-    public void createNewUser(UserModel user, MultipartFile image) {
-        if(image != null){
-            String imagePath = UPLOAD_DIR + user.getFirstName() + ".png";
-            user.setImagePath(imagePath);
-            uploadUserImage(user.getFirstName(), image);
-        }
-
+    public void createNewUser(UserModel user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.saveUser(user);
     }
