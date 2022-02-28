@@ -13,4 +13,10 @@ public class GeoLocation {
     private String latitude;
     private String longitude;
 
+    public GeoLocation(double latitude, double longitude) {
+        String lat = String.valueOf(latitude);
+        String lng = String.valueOf(longitude);
+        this.latitude = lat;
+        this.longitude = lng;
+    }
 }
