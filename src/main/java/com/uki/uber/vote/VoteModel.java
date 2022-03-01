@@ -2,6 +2,7 @@ package com.uki.uber.vote;
 
 
 
+import com.uki.uber.driver.DriverModel;
 import com.uki.uber.user.UserModel;
 import com.uki.uber.util.BaseModel;
 import lombok.*;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "user_vote")
+@Builder
 public class VoteModel extends BaseModel {
 
     @Id
@@ -24,7 +26,12 @@ public class VoteModel extends BaseModel {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
     private UserModel user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    private DriverModel driver;
 
     @Column(columnDefinition = "TINYINT")
     private byte score;

@@ -6,6 +6,7 @@ import com.uki.uber.util.BaseModel;
 import com.uki.uber.vote.VoteModel;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ public class UserModel extends BaseModel {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @NaturalId
     private String username;
 
     @Column(name = "first_name", nullable = false)
