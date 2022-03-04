@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uki.uber.directions.DirectionsService;
 import com.uki.uber.directions.DriverLocation;
 import com.uki.uber.directions.model.DirectionsResponse;
+import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
 import com.uki.uber.user.service.UserService;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ public class TestController {
     private final UserService userService;
     private final RedisTemplate<String, String> redisTemplate;
     private final DirectionsService directionsService;
+    private final DriverRepository driverRepository;
 
     @GetMapping("/user")
     public String protectedResource(){
@@ -43,6 +45,11 @@ public class TestController {
     @GetMapping("/test2")
     public DriverLocation test(@RequestBody GeoLocation geoLocation){
         return directionsService.searchForDriver(geoLocation);
+    }
+
+    @GetMapping("/driver")
+    public void testinranje(@RequestParam(name = "d") long driverId){
+        driverRepository.getDriverDto(driverId);
     }
 
 
