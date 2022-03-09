@@ -15,6 +15,8 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
 import java.util.stream.Collectors;
+import static com.uki.uber.security.TokenType.ACCESS;
+
 
 
 
@@ -25,19 +27,30 @@ public class JwtServiceImpl implements JwtService {
     private final JwtKeyProvider jwtKeyProvider;
     private RSAPrivateKey privateKey;
     private RSAPublicKey publicKey;
+    private final long accessTokenDuration = 12;
+    private final long refreshTokenDuration = 13;
+
+
+
 
     @PostConstruct
     public void initializeKeys() throws Exception{
-        privateKey = (RSAPrivateKey) jwtKeyProvider.getPrivateKey();
+        privateKey =  (RSAPrivateKey) jwtKeyProvider.getPrivateKey();
         publicKey  =  (RSAPublicKey) jwtKeyProvider.getPublicKey();
     }
 
 
-    public String generateJwtToken(User user, String issuer){
+    public String generateJwtToken(User user, String issuer, TokenType type){
+        long duration;
+        if (type.equals(ACCESS)){
+            duration = accessTokenDuration;
+        }else{
+            duration = refreshTokenDuration;
+        }
         return JWT.create()
                 .withSubject(user.getUsername())
                 .withIssuer(issuer)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 3 * 2592000000L))
+                .withExpiresAt(new Date(System.currentTimeMillis() + duration))
                 .withClaim("roles",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .sign(getAlgorithm());
     }

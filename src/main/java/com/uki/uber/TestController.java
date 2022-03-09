@@ -8,6 +8,7 @@ import com.uki.uber.directions.DriverLocation;
 import com.uki.uber.directions.model.DirectionsResponse;
 import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
+import com.uki.uber.security.RefreshTokenRepository;
 import com.uki.uber.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,6 +25,13 @@ public class TestController {
     private final RedisTemplate<String, String> redisTemplate;
     private final DirectionsService directionsService;
     private final DriverRepository driverRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
+
+    @GetMapping("/refresh")
+    public String refresh(@RequestBody String token){
+        refreshTokenRepository.findRefreshToken(token);
+        return "OK";
+    }
 
     @GetMapping("/user")
     public String protectedResource(){

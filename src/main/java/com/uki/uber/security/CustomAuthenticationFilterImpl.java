@@ -51,7 +51,7 @@ public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
                                             FilterChain chain, Authentication authResult) throws IOException{
 
         User user = (User) authResult.getPrincipal();
-        String access_token = jwtService.generateJwtToken(user,request.getRequestURL().toString());
+        String access_token = jwtService.generateJwtToken(user,request.getRequestURL().toString(),TokenType.ACCESS);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         loginAttemptService.loginSucceeded(request.getRemoteAddr());
         ObjectMapper mapper = new ObjectMapper();

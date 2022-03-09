@@ -5,6 +5,6 @@ import org.springframework.security.core.userdetails.User;
 
 public interface JwtService {
 
-    String generateJwtToken(User user, String issuer);
+    String generateJwtToken(User user, String issuer, TokenType type);
     DecodedJWT verifyJwtToken(String token);
 }
