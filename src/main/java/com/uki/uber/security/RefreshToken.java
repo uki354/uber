@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "refresh_token", indexes = @Index(columnList = "token",unique = true))
+@Table(name = "refresh_token", indexes = @Index(columnList = "checksum_token",unique = true))
+@Builder
 public class RefreshToken {
 
     @Id
@@ -20,5 +21,7 @@ public class RefreshToken {
     private String token;
     @Column(name = "is_valid", columnDefinition = "TINYINT(1)")
     private boolean isValid;
+    @Column(name = "checksum_token")
+    private String checksumToken;
 
 }

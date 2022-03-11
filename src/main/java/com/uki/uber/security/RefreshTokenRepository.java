@@ -1,33 +1,15 @@
 package com.uki.uber.security;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
-import org.springframework.stereotype.Repository;
+import javax.transaction.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+public interface RefreshTokenRepository extends RefreshTokenRepositoryCustom, JpaRepository<RefreshToken, Long> {
 
-@Repository
-public class RefreshTokenRepository {
-
-
-    @PersistenceContext
-    private EntityManager em;
-
-
-    public RefreshToken findRefreshToken(String token){
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<RefreshToken> cq = cb.createQuery(RefreshToken.class);
-        Root<RefreshToken> root = cq.from(RefreshToken.class);
-        Predicate predToken = cb.equal(root.get("token"),token);
-        Predicate predValid = cb.equal(root.get("is_valid"),true);
-        cq.where(predToken, predValid);
-        return em.createQuery(cq).getSingleResult();
-
-    }
-
-
+    @Query("update RefreshToken set isValid = false where checksumToken = :token")
+    @Modifying
+    @Transactional
+    void invalidateRefreshToken(String token);
 }
