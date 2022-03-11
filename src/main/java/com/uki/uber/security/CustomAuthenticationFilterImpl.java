@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -52,10 +53,14 @@ public class CustomAuthenticationFilterImpl extends CustomAuthenticationFilter {
 
         User user = (User) authResult.getPrincipal();
         String access_token = jwtService.generateJwtToken(user,request.getRequestURL().toString(),TokenType.ACCESS);
+        String refresh_token = jwtService.generateRefreshTokenAndSave(user,request.getRequestURL().toString()).getToken();
+        Map<String, String> tokens = new HashMap<>();
+        tokens.put("access_token", access_token);
+        tokens.put("refresh_token", refresh_token);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         loginAttemptService.loginSucceeded(request.getRemoteAddr());
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(response.getOutputStream(),access_token);
+        mapper.writeValue(response.getOutputStream(),tokens);
     }
 
     @Override

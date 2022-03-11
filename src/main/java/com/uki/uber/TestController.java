@@ -8,13 +8,14 @@ import com.uki.uber.directions.DriverLocation;
 import com.uki.uber.directions.model.DirectionsResponse;
 import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
+import com.uki.uber.security.JwtService;
 import com.uki.uber.security.RefreshTokenRepository;
 import com.uki.uber.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -26,12 +27,37 @@ public class TestController {
     private final DirectionsService directionsService;
     private final DriverRepository driverRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtService jwtService;
+
 
     @GetMapping("/refresh")
-    public String refresh(@RequestBody String token){
-        refreshTokenRepository.findRefreshToken(token);
+    public String refresh(@RequestBody String token) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(token);
+        String jwt = mapper.convertValue(node.get("token"), String.class);
+        refreshTokenRepository.findRefreshToken(jwt);
         return "OK";
     }
+
+    @GetMapping("/refreshi")
+    public String refreshi(@RequestBody String token) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(token);
+        String jwt = mapper.convertValue(node.get("token"), String.class);
+        refreshTokenRepository.invalidateRefreshToken(jwt);
+        return "OK";
+    }
+
+    @GetMapping("/refreshh")
+    public String refreshh(@RequestBody String token, HttpServletRequest request) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(token);
+        String jwt = mapper.convertValue(node.get("token"), String.class);
+        return  jwtService.refreshAccessToken(jwt,request);
+
+
+    }
+
 
     @GetMapping("/user")
     public String protectedResource(){
