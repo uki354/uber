@@ -8,6 +8,10 @@ import com.uki.uber.directions.DriverLocation;
 import com.uki.uber.directions.model.DirectionsResponse;
 import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
+import com.uki.uber.ride.RideDto;
+import com.uki.uber.ride.RideModel;
+import com.uki.uber.ride.RideModel_;
+import com.uki.uber.ride.RideRepository;
 import com.uki.uber.security.JwtService;
 import com.uki.uber.security.RefreshTokenRepository;
 import com.uki.uber.user.service.UserService;
@@ -28,6 +32,7 @@ public class TestController {
     private final DriverRepository driverRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtService jwtService;
+    private final RideRepository rideRepository;
 
 
     @GetMapping("/refresh")
@@ -37,6 +42,13 @@ public class TestController {
         String jwt = mapper.convertValue(node.get("token"), String.class);
         refreshTokenRepository.findRefreshToken(jwt);
         return "OK";
+    }
+
+    @GetMapping("ridem/{name}")
+    public RideDto nesto(@PathVariable String name){
+        System.out.println(name);
+
+             return rideRepository.findAllRidesByUser(name);
     }
 
     @GetMapping("/refreshi")

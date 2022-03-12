@@ -21,7 +21,7 @@ public class DriverCarModel extends BaseModel {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car+id", referencedColumnName = "car_id")
+    @JoinColumn(name = "car_id", referencedColumnName = "car_id")
     @ToString.Exclude
     private CarModel car;
 
