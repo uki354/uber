@@ -20,7 +20,7 @@ public class RideDto {
     private String locationName;
     private String destinationName;
 
-    public RideDto(GeoLocation location, GeoLocation destination, long driverId, byte score, double duration){
+    public RideDto(GeoLocation location, GeoLocation destination, long driverId, Byte score, double duration){
         this.location = location;
         this.destination = destination;
         this.driverId = driverId;

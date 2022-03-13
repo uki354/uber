@@ -2,14 +2,15 @@ package com.uki.uber.geometry.geocoding;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Results {
+@Component
+public class Data {
 
     private String latitude;
     private String longitude;

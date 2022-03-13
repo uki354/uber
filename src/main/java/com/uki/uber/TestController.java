@@ -8,10 +8,7 @@ import com.uki.uber.directions.DriverLocation;
 import com.uki.uber.directions.model.DirectionsResponse;
 import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
-import com.uki.uber.ride.RideDto;
-import com.uki.uber.ride.RideModel;
-import com.uki.uber.ride.RideModel_;
-import com.uki.uber.ride.RideRepository;
+import com.uki.uber.ride.*;
 import com.uki.uber.security.JwtService;
 import com.uki.uber.security.RefreshTokenRepository;
 import com.uki.uber.user.service.UserService;
@@ -20,6 +17,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @RestController
@@ -33,6 +31,7 @@ public class TestController {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtService jwtService;
     private final RideRepository rideRepository;
+    private final RideService rideService;
 
 
     @GetMapping("/refresh")
@@ -44,11 +43,12 @@ public class TestController {
         return "OK";
     }
 
-    @GetMapping("ridem/{name}")
-    public RideDto nesto(@PathVariable String name){
-        System.out.println(name);
 
-             return rideRepository.findAllRidesByUser(name);
+
+    @GetMapping("ridem/{name}")
+    public List<RideDto> nesto(@PathVariable String name){
+        System.out.println(name);
+             return rideService.findRidesByUser(name);
     }
 
     @GetMapping("/refreshi")

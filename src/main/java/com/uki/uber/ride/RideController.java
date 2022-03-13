@@ -9,12 +9,15 @@ import com.uki.uber.geometry.GeoLocation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/ride")
 public class RideController {
 
     private final DirectionsService directionsService;
+    private final RideService rideService;
     private final ObjectMapper mapper;
 
 
@@ -31,6 +34,13 @@ public class RideController {
     public DriverLocation searchForADriver(@RequestParam(name = "l") GeoLocation location){
         return directionsService.searchForDriver(location);
     }
+
+    @GetMapping("/history")
+    public List<RideDto> findUserRideHistory(@RequestParam(name = "user") String username){
+        return rideService.findRidesByUser(username);
+    }
+
+
 
 
 
