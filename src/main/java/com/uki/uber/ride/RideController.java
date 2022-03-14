@@ -36,8 +36,9 @@ public class RideController {
     }
 
     @GetMapping("/history")
-    public List<RideDto> findUserRideHistory(@RequestParam(name = "user") String username){
-        return rideService.findRidesByUser(username);
+    public List<RideDto> findUserRideHistory(@RequestParam(name = "user") String username,
+                                             @RequestParam(name = "page", defaultValue = "1") int pageNumber){
+        return rideService.findRidesByUser(username,pageNumber);
     }
 
 

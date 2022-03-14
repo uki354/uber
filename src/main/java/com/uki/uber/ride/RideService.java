@@ -31,8 +31,8 @@ public class RideService {
 
 
 
-    public List<RideDto> findRidesByUser(String username){
-        List<RideDto> rideDtos = rideRepository.findAllRidesByUser(username);
+    public List<RideDto> findRidesByUser(String username, int pageNumber){
+        List<RideDto> rideDtos = rideRepository.findAllRidesByUser(username, pageNumber);
         for (RideDto ride:
              rideDtos) {
             ride.setLocationName(doReverseGeocoding(ride.getLocation()));

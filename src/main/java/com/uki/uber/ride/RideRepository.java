@@ -19,7 +19,8 @@ public class RideRepository {
     @PersistenceContext
     private EntityManager em;
 
-    public List<RideDto> findAllRidesByUser(String username){
+    public List<RideDto> findAllRidesByUser(String username, int pageNumber){
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<RideDto> cq = cb.createQuery(RideDto.class);
 
@@ -38,8 +39,8 @@ public class RideRepository {
                 ));
         cq.where(cb.equal(join.get(UserModel_.USERNAME), username));
 
-        return em.createQuery(cq).getResultList();
-
+        int pageSize = 10;
+        return em.createQuery(cq).setFirstResult((pageNumber-1) * pageSize).setMaxResults(pageSize).getResultList();
     }
 
 

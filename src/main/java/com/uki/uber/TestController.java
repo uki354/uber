@@ -46,9 +46,9 @@ public class TestController {
 
 
     @GetMapping("ridem/{name}")
-    public List<RideDto> nesto(@PathVariable String name){
+    public List<RideDto> nesto(@PathVariable String name, @RequestParam(value = "page", defaultValue = "1") int pageNumber){
         System.out.println(name);
-             return rideService.findRidesByUser(name);
+             return rideService.findRidesByUser(name,pageNumber);
     }
 
     @GetMapping("/refreshi")
