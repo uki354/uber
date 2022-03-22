@@ -1,9 +1,14 @@
 package com.uki.uber.ride;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uki.uber.driver.DriverModel;
+import com.uki.uber.driver.DriverRepository;
 import com.uki.uber.geometry.GeoLocation;
 import com.uki.uber.geometry.geocoding.ReverseGeocodingResponse;
 
+import com.uki.uber.user.UserModel;
+import com.uki.uber.user.dao.UserRepository;
+import com.uki.uber.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,6 +23,9 @@ import java.util.List;
 public class RideService {
 
     private final RideRepository rideRepository;
+    private final DriverRepository driverRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
     private final ObjectMapper mapper;
     @Value("${geocoding.key}")
     public String KEY;
@@ -57,6 +65,18 @@ public class RideService {
 
 
 
-
     }
+
+    public void saveRide(GeoLocation location, GeoLocation destination, long driverId){
+        DriverModel driver = driverRepository.getById(driverId);
+        UserModel user = userRepository.findUserAndFetchRoles(userService.getLoggedInUser());
+        RideModel ride = RideModel.builder()
+                .location(location)
+                .destination(destination)
+                .driver(driver)
+                .user(user).build();
+
+        rideRepository.save(ride);
+    }
+
 }

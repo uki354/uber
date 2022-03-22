@@ -17,6 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity(name = "uber_ride")
 public class RideModel extends BaseModel {
 
