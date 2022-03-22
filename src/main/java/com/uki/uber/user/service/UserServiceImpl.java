@@ -3,6 +3,8 @@ package com.uki.uber.user.service;
 import com.uki.uber.user.UserModel;
 import com.uki.uber.user.dao.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,5 +51,12 @@ public class UserServiceImpl implements  UserService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public String getLoggedInUser(){
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        return loggedInUser.getName();
+    }
+
 
 }

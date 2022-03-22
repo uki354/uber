@@ -7,4 +7,5 @@ public interface UserService {
 
     void createNewUser(UserModel user);
     void updateUserImage(String username, MultipartFile image);
+    String getLoggedInUser();
 }

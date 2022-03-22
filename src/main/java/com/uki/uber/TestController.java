@@ -30,7 +30,7 @@ public class TestController {
     private final DriverRepository driverRepository;
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtService jwtService;
-    private final RideRepository rideRepository;
+    private final RideRepositoryImpl rideRepository;
     private final RideService rideService;
 
 
