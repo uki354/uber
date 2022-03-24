@@ -1,0 +1,117 @@
+
+/*BREAKPOINTS*/
+@mixin breakpoint($point) {
+  @if $point == breakMin1440 {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  } @else if $point == breakMin1740 {
+    @media (min-width: 1740px) {
+      @content;
+    }
+  } @else if $point == breakMax1740 {
+    @media (max-width: 1740px) {
+      @content;
+    }
+  } @else if $point == breakMin1601 {
+    @media (min-width: 1601px) {
+      @content;
+    }
+  } @else if $point == breakMax1600 {
+    @media (max-width: 1600px) {
+      @content;
+    }
+  } @else if $point == breakMax1440 {
+    @media (max-width: 1440px) {
+      @content;
+    }
+  } @else if $point == breakMax1400 {
+    @media (max-width: 1400px) {
+      @content;
+    }
+  } @else if $point == breakMin1400 {
+    @media (min-width: 1400px) {
+      @content;
+    }
+  } @else if $point == breakMax1281 {
+    @media (max-width: 1281px) {
+      @content;
+    }
+  } @else if $point == breakMax1201 {
+    @media (max-width: 1201px) {
+      @content;
+    }
+  } @else if $point == breakMin1200 {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if $point == breakMax1153 {
+    @media (max-width: 1153px) {
+      @content;
+    }
+  } @else if $point == breakMax1025 {
+    @media (max-width: 1025px) {
+      @content;
+    }
+  } @else if $point == breakMin992 {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $point == breakMax992 {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $point == breakMax991 {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $point == breakMax767 {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $point == breakMin768 {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == breakMax576 {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $point == breakMin576 {
+    @media (min-width: 576px) {
+      @content;
+    }
+  } @else if $point == breakMax541 {
+    @media (max-width: 541px) {
+      @content;
+    }
+  } @else if $point == breakMax481 {
+    @media (max-width: 481px) {
+      @content;
+    }
+  } @else if $point == breakMax415 {
+    @media (max-width: 415px) {
+      @content;
+    }
+  } @else if $point == breakMax400 {
+    @media (max-width: 400px) {
+      @content;
+    }
+  } @else if $point == breakMax376 {
+    @media (max-width: 376px) {
+      @content;
+    }
+  } @else if $point == breakMax350 {
+    @media (max-width: 350px) {
+      @content;
+    }
+  } @else if $point == breakMax321 {
+    @media (max-width: 321px) {
+      @content;
+    }
+  } @else if $point == breakMax281 {
+    @media (max-width: 281px) {
+      @content;
+    }
+  }
+}

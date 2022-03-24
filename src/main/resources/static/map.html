@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <!--IOS compatibility-->
+
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-title" content="Uber App" />
+      <link
+        rel="apple-touch-icon"
+        href="./assets/images/favicon/apple-icon-144x144.png"
+      />
+
+      <!--Android compatibility-->
+
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="application-name" content="Uber App" />
+      <link
+        rel="icon"
+        type="image/png"
+        href="./assets/images/favicon/android-icon-192x192.png"
+      />
+
+      <title>Uber App</title>
+
+      <!-- CSS Files -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+      />
+      <link rel="stylesheet" href="./assets/css/main.css" />
+    </head>
+
+    <!-- HEADER START -->
+    <header class="my-3">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+              <h1 class="text-uppercase fw-bolder">Uber</h1>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Service</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact Us</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="login-register.html">
+                    <i class="fa-user"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- .navbar END -->
+      </div>
+      <!-- .container END -->
+    </header>
+    <!-- HEADER END -->
+
+    <!-- Main Start -->
+    <main>
+      <section class="maps mb-100">
+        <div class="container">
+          <div class="my-5">
+            <h2 class="pb-3 ">Uživajte u vožnji kroz samo nekoliko klikova</h2>
+            <p>Za početak ostavite podatke o odredištu</p>
+          </div>
+          <div class="row">
+            <div
+              id="map-form-col"
+              class="col-12 col-lg-6 d-flex justify-content-center align-items-center"
+              style="min-height: 710px"
+            >
+              <form action="" class="">
+                <label for="" class="mb-3 d-block">
+                  Unesite Vašu trenutnu lokaciju:
+                  <input class="mx-2" type="text" , id="autocomplete" />
+                </label>
+                <label for="" class="mb-3 d-block">
+                  Unesite željeno odredište:
+                  <input class="mx-2" type="text" , id="destination" />
+                </label>
+                <!-- <a
+                  id="find-btn"
+                  class="primary-button d-inline-block px-4 py-2 my-4"
+                  >Nađi</a
+                > -->
+              </form>
+            </div>
+            <!-- .col END -->
+            <div id="maps-col" class="col-12 col-lg-6">
+              <div id="map" style="height: 600px; width: 100%"></div>
+              <a
+                class="primary-button d-inline-block px-5 py-3 my-4"
+                id="submit"
+                onclick="submitRide()"
+              >
+                Submit
+              </a>
+            </div>
+            <!-- .col END -->
+          </div>
+          <!-- .row END -->
+        </div>
+        <!-- .container END -->
+      </section>
+    </main>
+    <!-- Main END -->
+
+    <!-- footer START -->
+    <footer class="py-5 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="rights">
+            <em>All Rights Reserved @ Lorem ipsum 2022</em>
+          </div>
+          <div class="social-media"></div>
+        </div>
+      </div>
+      <!-- .container END -->
+    </footer>
+    <!-- footer END -->
+
+    <script src="./assets/js/maps.js"></script>
+    <script
+      async
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUEtcNaje9SzSarqHy9qt6Z2s4tv2tnuI&libraries=places&v=weekly&callback=initialize"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

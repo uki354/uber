@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <!--IOS compatibility-->
+        
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ <meta name="apple-mobile-web-app-title" content="Uber App">
+ <link rel="apple-touch-icon" href="./assets/images/favicon/apple-icon-144x144.png">
+ 
+ 
+ <!--Android compatibility-->
+ 
+ <meta name="mobile-web-app-capable" content="yes">
+ <meta name="application-name" content="Uber App">
+ <link rel="icon" type="image/png" href="./assets/images/favicon/android-icon-192x192.png">
+
+    <title>Uber App</title>
+
+    <!-- CSS Files -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/main.css">
+
+</head>
+<body>
+    
+<!-- Main Start -->
+<main>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+<form name="sign-in-form" action="https://euber-test.herokuapp.com/api/login" id="sign-in-form" >
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group mt-4">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign In">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot">Forgot Password?</a>
+                    </div>
+                </form>  <!-- .sign-in-form END -->
+                </div>
+                <div class="sign-up-htm">
+                    <form name="sign-up-form" action="https://euber-test.herokuapp.com/api/user/create" id="sign-up-form" >
+                        <p class="group d-block">
+                            <label for="user" class="label">Username</label>
+                            <input name="username" type="text" class="input" placeholder="Username" required>
+                        </p> 
+
+                        <p class="group d-block">
+                            <label for="user" class="label">Full Name</label>
+                            <input name="full-name" type="text" class="input" placeholder="Full Name" required>
+                        </p> 
+                    
+                    <p class="group d-block">
+                        <label for="pass" class="label">Password</label>
+                        <input  type="password" class="input" name="password" data-type="password" placeholder="Password" required>
+                    </p>
+                    <p class="group d-block">
+                        <label for="pass" class="label">Email Address</label>
+                        <input  type="email" name="email" class="input" placeholder="Email" required>
+                    </p>
+
+                    <p class="group d-block">
+                        <label for="pass" class="label">Mobile Phone</label>
+                        <input  type="number" name="mobile-phone" class="input" placeholder="Mobile Phone" required>
+                    </p>
+
+                    <p class="group d-block">
+                        <label for="pass" class="label">Adress</label>
+                        <input  type="text" name="adress" class="input" placeholder="Adress" required>
+                    </p>
+
+
+                    <p class="group mt-5 d-block">
+                        <input type="submit" class="button" value="Sign Up" required>
+                    </p>
+
+                    <div class="hr mt-5 mb-4"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </form>  <!-- .sign-up-form END -->
+                </div>
+            </div>
+        </div>
+    </div> <!-- .login-wrap END -->
+</main> <!-- Main END -->
+    
+
+
+
+<!-- JS files -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="./assets/js/validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/63a3a6b1d0.js" crossorigin="anonymous"></script>
+
+<script src="./assets/js/main.js"></script>
+
+
+</body>
+</html>
